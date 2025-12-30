@@ -10,38 +10,38 @@ export interface ServerOption {
 
 export const availableServers: ServerOption[] = [
   // North America
-  { code: 'iad1', city: 'Washington, D.C.', country: 'USA', flag: '🇺🇸', region: 'north-america' },
-  { code: 'sfo1', city: 'San Francisco', country: 'USA', flag: '🇺🇸', region: 'north-america' },
-  { code: 'lax1', city: 'Los Angeles', country: 'USA', flag: '🇺🇸', region: 'north-america' },
-  { code: 'ord1', city: 'Chicago', country: 'USA', flag: '🇺🇸', region: 'north-america' },
-  { code: 'dfw1', city: 'Dallas', country: 'USA', flag: '🇺🇸', region: 'north-america' },
-  { code: 'sea1', city: 'Seattle', country: 'USA', flag: '🇺🇸', region: 'north-america' },
-  { code: 'yyz1', city: 'Toronto', country: 'Canada', flag: '🇨🇦', region: 'north-america' },
+  { code: 'iad1', city: 'Washington, D.C.', country: 'USA', flag: 'US', region: 'north-america' },
+  { code: 'sfo1', city: 'San Francisco', country: 'USA', flag: 'US', region: 'north-america' },
+  { code: 'lax1', city: 'Los Angeles', country: 'USA', flag: 'US', region: 'north-america' },
+  { code: 'ord1', city: 'Chicago', country: 'USA', flag: 'US', region: 'north-america' },
+  { code: 'dfw1', city: 'Dallas', country: 'USA', flag: 'US', region: 'north-america' },
+  { code: 'sea1', city: 'Seattle', country: 'USA', flag: 'US', region: 'north-america' },
+  { code: 'yyz1', city: 'Toronto', country: 'Canada', flag: 'CA', region: 'north-america' },
   
   // Europe
-  { code: 'cdg1', city: 'Paris', country: 'France', flag: '🇫🇷', region: 'europe' },
-  { code: 'lhr1', city: 'London', country: 'UK', flag: '🇬🇧', region: 'europe' },
-  { code: 'fra1', city: 'Frankfurt', country: 'Germany', flag: '🇩🇪', region: 'europe' },
-  { code: 'ams1', city: 'Amsterdam', country: 'Netherlands', flag: '🇳🇱', region: 'europe' },
-  { code: 'mad1', city: 'Madrid', country: 'Spain', flag: '🇪🇸', region: 'europe' },
-  { code: 'mxp1', city: 'Milan', country: 'Italy', flag: '🇮🇹', region: 'europe' },
-  { code: 'arn1', city: 'Stockholm', country: 'Sweden', flag: '🇸🇪', region: 'europe' },
-  { code: 'dub1', city: 'Dublin', country: 'Ireland', flag: '🇮🇪', region: 'europe' },
+  { code: 'cdg1', city: 'Paris', country: 'France', flag: 'FR', region: 'europe' },
+  { code: 'lhr1', city: 'London', country: 'UK', flag: 'GB', region: 'europe' },
+  { code: 'fra1', city: 'Frankfurt', country: 'Germany', flag: 'DE', region: 'europe' },
+  { code: 'ams1', city: 'Amsterdam', country: 'Netherlands', flag: 'NL', region: 'europe' },
+  { code: 'mad1', city: 'Madrid', country: 'Spain', flag: 'ES', region: 'europe' },
+  { code: 'mxp1', city: 'Milan', country: 'Italy', flag: 'IT', region: 'europe' },
+  { code: 'arn1', city: 'Stockholm', country: 'Sweden', flag: 'SE', region: 'europe' },
+  { code: 'dub1', city: 'Dublin', country: 'Ireland', flag: 'IE', region: 'europe' },
   
   // Asia Pacific
-  { code: 'hnd1', city: 'Tokyo', country: 'Japan', flag: '🇯🇵', region: 'asia-pacific' },
-  { code: 'icn1', city: 'Seoul', country: 'South Korea', flag: '🇰🇷', region: 'asia-pacific' },
-  { code: 'sin1', city: 'Singapore', country: 'Singapore', flag: '🇸🇬', region: 'asia-pacific' },
-  { code: 'syd1', city: 'Sydney', country: 'Australia', flag: '🇦🇺', region: 'asia-pacific' },
-  { code: 'hkg1', city: 'Hong Kong', country: 'Hong Kong', flag: '🇭🇰', region: 'asia-pacific' },
-  { code: 'bom1', city: 'Mumbai', country: 'India', flag: '🇮🇳', region: 'asia-pacific' },
+  { code: 'hnd1', city: 'Tokyo', country: 'Japan', flag: 'JP', region: 'asia-pacific' },
+  { code: 'icn1', city: 'Seoul', country: 'South Korea', flag: 'KR', region: 'asia-pacific' },
+  { code: 'sin1', city: 'Singapore', country: 'Singapore', flag: 'SG', region: 'asia-pacific' },
+  { code: 'syd1', city: 'Sydney', country: 'Australia', flag: 'AU', region: 'asia-pacific' },
+  { code: 'hkg1', city: 'Hong Kong', country: 'Hong Kong', flag: 'HK', region: 'asia-pacific' },
+  { code: 'bom1', city: 'Mumbai', country: 'India', flag: 'IN', region: 'asia-pacific' },
   
   // South America
-  { code: 'gru1', city: 'São Paulo', country: 'Brazil', flag: '🇧🇷', region: 'south-america' },
-  { code: 'scl1', city: 'Santiago', country: 'Chile', flag: '🇨🇱', region: 'south-america' },
+  { code: 'gru1', city: 'Sao Paulo', country: 'Brazil', flag: 'BR', region: 'south-america' },
+  { code: 'scl1', city: 'Santiago', country: 'Chile', flag: 'CL', region: 'south-america' },
   
   // Middle East
-  { code: 'dxb1', city: 'Dubai', country: 'UAE', flag: '🇦🇪', region: 'middle-east' },
+  { code: 'dxb1', city: 'Dubai', country: 'UAE', flag: 'AE', region: 'middle-east' },
 ];
 
 const regionNames: Record<string, Record<string, string>> = {
@@ -53,17 +53,17 @@ const regionNames: Record<string, Record<string, string>> = {
     'middle-east': 'Middle East',
   },
   fr: {
-    'north-america': 'Amérique du Nord',
+    'north-america': 'Amerique du Nord',
     'europe': 'Europe',
     'asia-pacific': 'Asie-Pacifique',
-    'south-america': 'Amérique du Sud',
+    'south-america': 'Amerique du Sud',
     'middle-east': 'Moyen-Orient',
   },
   es: {
-    'north-america': 'Norteamérica',
+    'north-america': 'Norteamerica',
     'europe': 'Europa',
-    'asia-pacific': 'Asia Pacífico',
-    'south-america': 'Sudamérica',
+    'asia-pacific': 'Asia Pacifico',
+    'south-america': 'Sudamerica',
     'middle-east': 'Medio Oriente',
   },
   it: {
@@ -77,15 +77,15 @@ const regionNames: Record<string, Record<string, string>> = {
     'north-america': 'Nordamerika',
     'europe': 'Europa',
     'asia-pacific': 'Asien-Pazifik',
-    'south-america': 'Südamerika',
+    'south-america': 'Sudamerika',
     'middle-east': 'Naher Osten',
   },
   ja: {
-    'north-america': '北米',
-    'europe': 'ヨーロッパ',
-    'asia-pacific': 'アジア太平洋',
-    'south-america': '南米',
-    'middle-east': '中東',
+    'north-america': 'North America',
+    'europe': 'Europe',
+    'asia-pacific': 'Asia Pacific',
+    'south-america': 'South America',
+    'middle-east': 'Middle East',
   },
 };
 
@@ -148,7 +148,7 @@ export default function ServerSelector({
       >
         {selectedServer ? (
           <>
-            <span className="text-base">{selectedServer.flag}</span>
+            <span className="text-xs font-medium text-zinc-400 bg-zinc-700/50 px-1.5 py-0.5 rounded">{selectedServer.flag}</span>
             <span className="hidden sm:inline">{selectedServer.city}</span>
             <span className="sm:hidden">{selectedServer.code.replace(/[0-9]/g, '').toUpperCase()}</span>
           </>
@@ -221,7 +221,7 @@ export default function ServerSelector({
                         : 'text-zinc-300 hover:bg-zinc-800'
                     }`}
                   >
-                    <span className="text-lg">{server.flag}</span>
+                    <span className="text-xs font-medium text-zinc-400 bg-zinc-700/50 px-1.5 py-0.5 rounded">{server.flag}</span>
                     <div className="text-left flex-1">
                       <div>{server.city}</div>
                       <div className="text-xs text-zinc-500">{server.country}</div>
@@ -241,4 +241,3 @@ export default function ServerSelector({
     </div>
   );
 }
-
