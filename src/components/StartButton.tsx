@@ -2,13 +2,47 @@
 
 import { motion } from 'motion/react';
 
+interface StartButtonTranslations {
+  start: string;
+  startHint: string;
+  tapToStop: string;
+  phases: {
+    ping: string;
+    download: string;
+    upload: string;
+    complete: string;
+    done: string;
+  };
+}
+
 interface StartButtonProps {
   onClick: () => void;
   isRunning: boolean;
   phase: string;
+  translations?: StartButtonTranslations;
 }
 
-export default function StartButton({ onClick, isRunning, phase }: StartButtonProps) {
+const defaultTranslations: StartButtonTranslations = {
+  start: 'GO',
+  startHint: 'start test',
+  tapToStop: 'tap to stop',
+  phases: {
+    ping: 'Ping',
+    download: 'Download',
+    upload: 'Upload',
+    complete: 'Complete',
+    done: 'Done',
+  },
+};
+
+export default function StartButton({ 
+  onClick, 
+  isRunning, 
+  phase, 
+  translations = defaultTranslations 
+}: StartButtonProps) {
+  const t = translations;
+  
   return (
     <motion.button
       onClick={onClick}
@@ -34,13 +68,13 @@ export default function StartButton({ onClick, isRunning, phase }: StartButtonPr
           {isRunning ? (
             <>
               <div className="text-lg font-semibold text-pink-400 uppercase tracking-wide">
-                {phase === 'ping' && 'Ping'}
-                {phase === 'download' && 'Download'}
-                {phase === 'upload' && 'Upload'}
-                {phase === 'complete' && 'Done'}
+                {phase === 'ping' && t.phases.ping}
+                {phase === 'download' && t.phases.download}
+                {phase === 'upload' && t.phases.upload}
+                {phase === 'complete' && t.phases.done}
               </div>
               <p className="text-xs mt-1 text-zinc-500">
-                tap to stop
+                {t.tapToStop}
               </p>
             </>
           ) : (
@@ -48,10 +82,10 @@ export default function StartButton({ onClick, isRunning, phase }: StartButtonPr
               <div
                 className="text-3xl font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors"
               >
-                GO
+                {t.start}
               </div>
               <p className="text-xs mt-1 text-zinc-500 group-hover:text-zinc-400 transition-colors">
-                start test
+                {t.startHint}
               </p>
             </>
           )}

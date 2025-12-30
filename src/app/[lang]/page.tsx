@@ -7,6 +7,9 @@ import SpeedGauge from '@/components/SpeedGauge';
 import ResultCard from '@/components/ResultCard';
 import StartButton from '@/components/StartButton';
 import ProgressBar from '@/components/ProgressBar';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useParams } from 'next/navigation';
+import type { Locale } from './dictionaries';
 
 interface LocationData {
   ip: string;
@@ -16,6 +19,65 @@ interface LocationData {
   countryCode: string;
   isp: string;
 }
+
+// Translations loaded client-side
+const translations: Record<Locale, {
+  header: { subtitle: string };
+  speedTest: { start: string; startHint: string; tapToStop: string; cancel: string; runAgain: string };
+  phases: { idle: string; ping: string; latency: string; download: string; upload: string; complete: string; done: string };
+  results: { title: string; download: string; upload: string; ping: string; jitter: string };
+  footer: { text: string };
+  accessibility: { speedTestAriaLabel: string; runAgainAriaLabel: string; cancelAriaLabel: string; statusAriaLabel: string };
+}> = {
+  en: {
+    header: { subtitle: 'Test your internet connection speed' },
+    speedTest: { start: 'GO', startHint: 'start test', tapToStop: 'tap to stop', cancel: 'Cancel', runAgain: 'Run Again' },
+    phases: { idle: 'Ready', ping: 'Ping', latency: 'Latency', download: 'Download', upload: 'Upload', complete: 'Complete', done: 'Done' },
+    results: { title: 'Your Speed Test Results', download: 'Download', upload: 'Upload', ping: 'Ping', jitter: 'Jitter' },
+    footer: { text: 'Free internet speed test — Check your download, upload, ping & jitter' },
+    accessibility: { speedTestAriaLabel: 'Speed test controls and results', runAgainAriaLabel: 'Run speed test again', cancelAriaLabel: 'Cancel speed test', statusAriaLabel: 'Speed test status' },
+  },
+  fr: {
+    header: { subtitle: 'Testez la vitesse de votre connexion Internet' },
+    speedTest: { start: 'GO', startHint: 'lancer le test', tapToStop: 'appuyez pour arrêter', cancel: 'Annuler', runAgain: 'Relancer' },
+    phases: { idle: 'Prêt', ping: 'Ping', latency: 'Latence', download: 'Téléchargement', upload: 'Envoi', complete: 'Terminé', done: 'Fini' },
+    results: { title: 'Vos Résultats de Test de Vitesse', download: 'Téléchargement', upload: 'Envoi', ping: 'Ping', jitter: 'Gigue' },
+    footer: { text: 'Test de vitesse Internet gratuit — Vérifiez téléchargement, envoi, ping et gigue' },
+    accessibility: { speedTestAriaLabel: 'Contrôles et résultats du test de vitesse', runAgainAriaLabel: 'Relancer le test de vitesse', cancelAriaLabel: 'Annuler le test de vitesse', statusAriaLabel: 'État du test de vitesse' },
+  },
+  es: {
+    header: { subtitle: 'Prueba la velocidad de tu conexión a Internet' },
+    speedTest: { start: 'IR', startHint: 'iniciar prueba', tapToStop: 'toca para detener', cancel: 'Cancelar', runAgain: 'Repetir' },
+    phases: { idle: 'Listo', ping: 'Ping', latency: 'Latencia', download: 'Descarga', upload: 'Subida', complete: 'Completado', done: 'Hecho' },
+    results: { title: 'Tus Resultados del Test de Velocidad', download: 'Descarga', upload: 'Subida', ping: 'Ping', jitter: 'Jitter' },
+    footer: { text: 'Test de velocidad de Internet gratis — Comprueba descarga, subida, ping y jitter' },
+    accessibility: { speedTestAriaLabel: 'Controles y resultados del test de velocidad', runAgainAriaLabel: 'Ejecutar test de velocidad de nuevo', cancelAriaLabel: 'Cancelar test de velocidad', statusAriaLabel: 'Estado del test de velocidad' },
+  },
+  it: {
+    header: { subtitle: 'Testa la velocità della tua connessione Internet' },
+    speedTest: { start: 'VAI', startHint: 'avvia test', tapToStop: 'tocca per fermare', cancel: 'Annulla', runAgain: 'Riprova' },
+    phases: { idle: 'Pronto', ping: 'Ping', latency: 'Latenza', download: 'Download', upload: 'Upload', complete: 'Completato', done: 'Fatto' },
+    results: { title: 'I Tuoi Risultati del Test di Velocità', download: 'Download', upload: 'Upload', ping: 'Ping', jitter: 'Jitter' },
+    footer: { text: 'Test velocità Internet gratuito — Verifica download, upload, ping e jitter' },
+    accessibility: { speedTestAriaLabel: 'Controlli e risultati del test di velocità', runAgainAriaLabel: 'Esegui di nuovo il test di velocità', cancelAriaLabel: 'Annulla test di velocità', statusAriaLabel: 'Stato del test di velocità' },
+  },
+  de: {
+    header: { subtitle: 'Testen Sie Ihre Internetverbindungsgeschwindigkeit' },
+    speedTest: { start: 'LOS', startHint: 'Test starten', tapToStop: 'tippen zum Stoppen', cancel: 'Abbrechen', runAgain: 'Erneut testen' },
+    phases: { idle: 'Bereit', ping: 'Ping', latency: 'Latenz', download: 'Download', upload: 'Upload', complete: 'Abgeschlossen', done: 'Fertig' },
+    results: { title: 'Ihre Geschwindigkeitstest-Ergebnisse', download: 'Download', upload: 'Upload', ping: 'Ping', jitter: 'Jitter' },
+    footer: { text: 'Kostenloser Internet-Geschwindigkeitstest — Prüfen Sie Download, Upload, Ping & Jitter' },
+    accessibility: { speedTestAriaLabel: 'Steuerung und Ergebnisse des Geschwindigkeitstests', runAgainAriaLabel: 'Geschwindigkeitstest erneut ausführen', cancelAriaLabel: 'Geschwindigkeitstest abbrechen', statusAriaLabel: 'Status des Geschwindigkeitstests' },
+  },
+  ja: {
+    header: { subtitle: 'インターネット接続速度をテスト' },
+    speedTest: { start: '開始', startHint: 'テスト開始', tapToStop: 'タップして停止', cancel: 'キャンセル', runAgain: '再テスト' },
+    phases: { idle: '準備完了', ping: 'Ping', latency: 'レイテンシ', download: 'ダウンロード', upload: 'アップロード', complete: '完了', done: '完了' },
+    results: { title: '速度テスト結果', download: 'ダウンロード', upload: 'アップロード', ping: 'Ping', jitter: 'ジッター' },
+    footer: { text: '無料インターネット速度テスト — ダウンロード、アップロード、ping、ジッターをチェック' },
+    accessibility: { speedTestAriaLabel: '速度テストの操作と結果', runAgainAriaLabel: '速度テストを再実行', cancelAriaLabel: '速度テストをキャンセル', statusAriaLabel: '速度テストの状態' },
+  },
+};
 
 // Icons
 const LocationIcon = () => (
@@ -50,6 +112,10 @@ const JitterIcon = () => (
 );
 
 export default function Home() {
+  const params = useParams();
+  const lang = (params.lang as Locale) || 'en';
+  const t = translations[lang] || translations.en;
+
   const {
     phase,
     progress,
@@ -83,15 +149,15 @@ export default function Home() {
   const getGaugeLabel = () => {
     switch (phase) {
       case 'ping':
-        return 'Latency';
+        return t.phases.latency;
       case 'download':
-        return 'Download';
+        return t.phases.download;
       case 'upload':
-        return 'Upload';
+        return t.phases.upload;
       case 'complete':
-        return 'Complete';
+        return t.phases.complete;
       default:
-        return 'Ready';
+        return t.phases.idle;
     }
   };
 
@@ -132,6 +198,11 @@ export default function Home() {
         />
       </div>
 
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-20">
+        <LanguageSwitcher currentLocale={lang} />
+      </div>
+
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-12">
         {/* Header */}
@@ -144,10 +215,10 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
             <span className="text-white">Open</span>
             <span className="text-cyan-400">Speed</span>
-            <span className="sr-only"> - Free Internet Speed Test</span>
+            <span className="sr-only"> - {t.header.subtitle}</span>
           </h1>
           <p className="text-zinc-500 text-sm tracking-wide">
-            Test your internet connection speed
+            {t.header.subtitle}
           </p>
           
           {/* Location */}
@@ -168,7 +239,7 @@ export default function Home() {
 
         {/* Main content area */}
         <motion.section
-          aria-label="Speed test controls and results"
+          aria-label={t.accessibility.speedTestAriaLabel}
           className="flex flex-col items-center gap-12 w-full max-w-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -190,6 +261,12 @@ export default function Home() {
                   onClick={handleButtonClick}
                   isRunning={isRunning}
                   phase={phase}
+                  translations={{
+                    start: t.speedTest.start,
+                    startHint: t.speedTest.startHint,
+                    tapToStop: t.speedTest.tapToStop,
+                    phases: t.phases,
+                  }}
                 />
               )}
             </div>
@@ -202,25 +279,33 @@ export default function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <ProgressBar phase={phase} progress={progress} />
+              <ProgressBar 
+                phase={phase} 
+                progress={progress}
+                translations={{
+                  ping: t.phases.ping,
+                  download: t.phases.download,
+                  upload: t.phases.upload,
+                }}
+              />
             </motion.div>
           )}
 
           {/* Results section */}
           {phase === 'complete' && (
             <>
-              <h2 className="sr-only">Your Speed Test Results</h2>
+              <h2 className="sr-only">{t.results.title}</h2>
               
               {/* Run Again button */}
               <button
                 onClick={resetTest}
                 className="group flex items-center justify-center gap-3 px-10 py-4 rounded-lg transition-colors duration-200 bg-cyan-500 hover:bg-cyan-400 active:bg-cyan-600 text-zinc-900 font-medium text-lg"
-                aria-label="Run speed test again"
+                aria-label={t.accessibility.runAgainAriaLabel}
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                <span>Run Again</span>
+                <span>{t.speedTest.runAgain}</span>
               </button>
 
               {/* Results grid */}
@@ -232,7 +317,7 @@ export default function Home() {
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
                 <ResultCard
-                  label="Download"
+                  label={t.results.download}
                   value={results.download}
                   unit="Mbps"
                   icon={<DownloadIcon />}
@@ -240,7 +325,7 @@ export default function Home() {
                   delay={0}
                 />
                 <ResultCard
-                  label="Upload"
+                  label={t.results.upload}
                   value={results.upload}
                   unit="Mbps"
                   icon={<UploadIcon />}
@@ -248,7 +333,7 @@ export default function Home() {
                   delay={0.05}
                 />
                 <ResultCard
-                  label="Ping"
+                  label={t.results.ping}
                   value={results.ping}
                   unit="ms"
                   icon={<PingIcon />}
@@ -256,7 +341,7 @@ export default function Home() {
                   delay={0.1}
                 />
                 <ResultCard
-                  label="Jitter"
+                  label={t.results.jitter}
                   value={results.jitter}
                   unit="ms"
                   icon={<JitterIcon />}
@@ -271,19 +356,20 @@ export default function Home() {
           {isRunning && (
             <button
               onClick={stopTest}
-              aria-label="Cancel speed test"
+              aria-label={t.accessibility.cancelAriaLabel}
               className="px-8 py-3 text-sm font-medium rounded-full transition-all duration-200 text-zinc-500 hover:text-zinc-300 border border-zinc-800 hover:border-zinc-700"
             >
-              Cancel
+              {t.speedTest.cancel}
             </button>
           )}
         </motion.section>
 
         {/* Footer */}
         <footer className="absolute bottom-6 text-center text-zinc-600 text-xs">
-          <p>Free internet speed test — Check your download, upload, ping &amp; jitter</p>
+          <p>{t.footer.text}</p>
         </footer>
       </div>
     </main>
   );
 }
+

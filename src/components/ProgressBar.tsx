@@ -2,18 +2,37 @@
 
 import type { TestPhase } from '@/hooks/useSpeedTest';
 
+interface ProgressBarTranslations {
+  ping: string;
+  download: string;
+  upload: string;
+}
+
 interface ProgressBarProps {
   phase: TestPhase;
   progress: number;
+  translations?: ProgressBarTranslations;
 }
 
-const phases: { key: TestPhase; label: string; color: string }[] = [
-  { key: 'ping', label: 'Ping', color: '#fbbf24' },
-  { key: 'download', label: 'Download', color: '#06b6d4' },
-  { key: 'upload', label: 'Upload', color: '#ec4899' },
-];
+const defaultTranslations: ProgressBarTranslations = {
+  ping: 'Ping',
+  download: 'Download',
+  upload: 'Upload',
+};
 
-export default function ProgressBar({ phase, progress }: ProgressBarProps) {
+export default function ProgressBar({ 
+  phase, 
+  progress, 
+  translations = defaultTranslations 
+}: ProgressBarProps) {
+  const t = translations;
+  
+  const phases: { key: TestPhase; label: string; color: string }[] = [
+    { key: 'ping', label: t.ping, color: '#fbbf24' },
+    { key: 'download', label: t.download, color: '#06b6d4' },
+    { key: 'upload', label: t.upload, color: '#ec4899' },
+  ];
+
   const currentPhaseIndex = phases.findIndex((p) => p.key === phase);
   const currentColor = phases[currentPhaseIndex]?.color || '#06b6d4';
 
