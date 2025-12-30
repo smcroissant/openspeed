@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "OpenSpeed - Test Velocità Internet Gratuito | Verifica la Tua Connessione",
+    "description": "Testa istantaneamente la velocità della tua connessione Internet con OpenSpeed. Misura velocità di download, upload, ping e jitter con il nostro strumento di test veloce, preciso e gratuito.",
+    "ogTitle": "OpenSpeed - Test Velocità Internet Gratuito",
+    "ogDescription": "Testa la tua velocità Internet istantaneamente. Misura download, upload, ping e jitter gratuitamente."
+  },
+  "header": {
+    "subtitle": "Testa la velocità della tua connessione Internet"
+  },
+  "speedTest": {
+    "start": "VAI",
+    "startHint": "avvia test",
+    "tapToStop": "tocca per fermare",
+    "cancel": "Annulla",
+    "runAgain": "Riprova"
+  },
+  "phases": {
+    "idle": "Pronto",
+    "ping": "Ping",
+    "latency": "Latenza",
+    "download": "Download",
+    "upload": "Upload",
+    "complete": "Completato",
+    "done": "Fatto"
+  },
+  "results": {
+    "title": "I Tuoi Risultati del Test di Velocità",
+    "download": "Download",
+    "upload": "Upload",
+    "ping": "Ping",
+    "jitter": "Jitter"
+  },
+  "footer": {
+    "text": "Test velocità Internet gratuito — Verifica download, upload, ping e jitter"
+  },
+  "accessibility": {
+    "speedTestAriaLabel": "Controlli e risultati del test di velocità",
+    "runAgainAriaLabel": "Esegui di nuovo il test di velocità",
+    "cancelAriaLabel": "Annulla test di velocità",
+    "statusAriaLabel": "Stato del test di velocità"
+  },
+  "schema": {
+    "featureList": [
+      "Test velocità di download",
+      "Test velocità di upload",
+      "Misurazione ping/latenza",
+      "Misurazione jitter",
+      "Risultati in tempo reale"
+    ]
+  }
+}
+

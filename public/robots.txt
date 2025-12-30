@@ -1,0 +1,7 @@
+# robots.txt for OpenSpeed
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://openspeed.app/sitemap.xml
+
