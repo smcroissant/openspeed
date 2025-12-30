@@ -31,6 +31,11 @@
     "ping": "Ping",
     "jitter": "Jitter"
   },
+  "server": {
+    "label": "Servidor",
+    "yourLocation": "Tu ubicación",
+    "poweredBy": "Desarrollado con"
+  },
   "footer": {
     "text": "Test de velocidad de Internet gratis — Comprueba descarga, subida, ping y jitter"
   },

@@ -31,6 +31,11 @@
     "ping": "Ping",
     "jitter": "Jitter"
   },
+  "server": {
+    "label": "Server",
+    "yourLocation": "Your location",
+    "poweredBy": "Powered by"
+  },
   "footer": {
     "text": "Free internet speed test — Check your download, upload, ping & jitter"
   },

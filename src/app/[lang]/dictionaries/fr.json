@@ -31,6 +31,11 @@
     "ping": "Ping",
     "jitter": "Gigue"
   },
+  "server": {
+    "label": "Serveur",
+    "yourLocation": "Votre position",
+    "poweredBy": "Propulsé par"
+  },
   "footer": {
     "text": "Test de vitesse Internet gratuit — Vérifiez téléchargement, envoi, ping et gigue"
   },

@@ -20,12 +20,26 @@ interface LocationData {
   isp: string;
 }
 
+interface ServerInfo {
+  server: {
+    provider: string;
+    region: {
+      code: string;
+      city: string;
+      country: string;
+      flag: string;
+    };
+    environment: string;
+  };
+}
+
 // Translations loaded client-side
 const translations: Record<Locale, {
   header: { subtitle: string };
   speedTest: { start: string; startHint: string; tapToStop: string; cancel: string; runAgain: string };
   phases: { idle: string; ping: string; latency: string; download: string; upload: string; complete: string; done: string };
   results: { title: string; download: string; upload: string; ping: string; jitter: string };
+  server: { label: string; yourLocation: string; poweredBy: string };
   footer: { text: string };
   accessibility: { speedTestAriaLabel: string; runAgainAriaLabel: string; cancelAriaLabel: string; statusAriaLabel: string };
 }> = {
@@ -34,6 +48,7 @@ const translations: Record<Locale, {
     speedTest: { start: 'GO', startHint: 'start test', tapToStop: 'tap to stop', cancel: 'Cancel', runAgain: 'Run Again' },
     phases: { idle: 'Ready', ping: 'Ping', latency: 'Latency', download: 'Download', upload: 'Upload', complete: 'Complete', done: 'Done' },
     results: { title: 'Your Speed Test Results', download: 'Download', upload: 'Upload', ping: 'Ping', jitter: 'Jitter' },
+    server: { label: 'Server', yourLocation: 'Your location', poweredBy: 'Powered by' },
     footer: { text: 'Free internet speed test — Check your download, upload, ping & jitter' },
     accessibility: { speedTestAriaLabel: 'Speed test controls and results', runAgainAriaLabel: 'Run speed test again', cancelAriaLabel: 'Cancel speed test', statusAriaLabel: 'Speed test status' },
   },
@@ -42,6 +57,7 @@ const translations: Record<Locale, {
     speedTest: { start: 'GO', startHint: 'lancer le test', tapToStop: 'appuyez pour arrêter', cancel: 'Annuler', runAgain: 'Relancer' },
     phases: { idle: 'Prêt', ping: 'Ping', latency: 'Latence', download: 'Téléchargement', upload: 'Envoi', complete: 'Terminé', done: 'Fini' },
     results: { title: 'Vos Résultats de Test de Vitesse', download: 'Téléchargement', upload: 'Envoi', ping: 'Ping', jitter: 'Gigue' },
+    server: { label: 'Serveur', yourLocation: 'Votre position', poweredBy: 'Propulsé par' },
     footer: { text: 'Test de vitesse Internet gratuit — Vérifiez téléchargement, envoi, ping et gigue' },
     accessibility: { speedTestAriaLabel: 'Contrôles et résultats du test de vitesse', runAgainAriaLabel: 'Relancer le test de vitesse', cancelAriaLabel: 'Annuler le test de vitesse', statusAriaLabel: 'État du test de vitesse' },
   },
@@ -50,6 +66,7 @@ const translations: Record<Locale, {
     speedTest: { start: 'IR', startHint: 'iniciar prueba', tapToStop: 'toca para detener', cancel: 'Cancelar', runAgain: 'Repetir' },
     phases: { idle: 'Listo', ping: 'Ping', latency: 'Latencia', download: 'Descarga', upload: 'Subida', complete: 'Completado', done: 'Hecho' },
     results: { title: 'Tus Resultados del Test de Velocidad', download: 'Descarga', upload: 'Subida', ping: 'Ping', jitter: 'Jitter' },
+    server: { label: 'Servidor', yourLocation: 'Tu ubicación', poweredBy: 'Desarrollado con' },
     footer: { text: 'Test de velocidad de Internet gratis — Comprueba descarga, subida, ping y jitter' },
     accessibility: { speedTestAriaLabel: 'Controles y resultados del test de velocidad', runAgainAriaLabel: 'Ejecutar test de velocidad de nuevo', cancelAriaLabel: 'Cancelar test de velocidad', statusAriaLabel: 'Estado del test de velocidad' },
   },
@@ -58,6 +75,7 @@ const translations: Record<Locale, {
     speedTest: { start: 'VAI', startHint: 'avvia test', tapToStop: 'tocca per fermare', cancel: 'Annulla', runAgain: 'Riprova' },
     phases: { idle: 'Pronto', ping: 'Ping', latency: 'Latenza', download: 'Download', upload: 'Upload', complete: 'Completato', done: 'Fatto' },
     results: { title: 'I Tuoi Risultati del Test di Velocità', download: 'Download', upload: 'Upload', ping: 'Ping', jitter: 'Jitter' },
+    server: { label: 'Server', yourLocation: 'La tua posizione', poweredBy: 'Alimentato da' },
     footer: { text: 'Test velocità Internet gratuito — Verifica download, upload, ping e jitter' },
     accessibility: { speedTestAriaLabel: 'Controlli e risultati del test di velocità', runAgainAriaLabel: 'Esegui di nuovo il test di velocità', cancelAriaLabel: 'Annulla test di velocità', statusAriaLabel: 'Stato del test di velocità' },
   },
@@ -66,6 +84,7 @@ const translations: Record<Locale, {
     speedTest: { start: 'LOS', startHint: 'Test starten', tapToStop: 'tippen zum Stoppen', cancel: 'Abbrechen', runAgain: 'Erneut testen' },
     phases: { idle: 'Bereit', ping: 'Ping', latency: 'Latenz', download: 'Download', upload: 'Upload', complete: 'Abgeschlossen', done: 'Fertig' },
     results: { title: 'Ihre Geschwindigkeitstest-Ergebnisse', download: 'Download', upload: 'Upload', ping: 'Ping', jitter: 'Jitter' },
+    server: { label: 'Server', yourLocation: 'Ihr Standort', poweredBy: 'Betrieben von' },
     footer: { text: 'Kostenloser Internet-Geschwindigkeitstest — Prüfen Sie Download, Upload, Ping & Jitter' },
     accessibility: { speedTestAriaLabel: 'Steuerung und Ergebnisse des Geschwindigkeitstests', runAgainAriaLabel: 'Geschwindigkeitstest erneut ausführen', cancelAriaLabel: 'Geschwindigkeitstest abbrechen', statusAriaLabel: 'Status des Geschwindigkeitstests' },
   },
@@ -74,6 +93,7 @@ const translations: Record<Locale, {
     speedTest: { start: '開始', startHint: 'テスト開始', tapToStop: 'タップして停止', cancel: 'キャンセル', runAgain: '再テスト' },
     phases: { idle: '準備完了', ping: 'Ping', latency: 'レイテンシ', download: 'ダウンロード', upload: 'アップロード', complete: '完了', done: '完了' },
     results: { title: '速度テスト結果', download: 'ダウンロード', upload: 'アップロード', ping: 'Ping', jitter: 'ジッター' },
+    server: { label: 'サーバー', yourLocation: 'あなたの場所', poweredBy: '提供' },
     footer: { text: '無料インターネット速度テスト — ダウンロード、アップロード、ping、ジッターをチェック' },
     accessibility: { speedTestAriaLabel: '速度テストの操作と結果', runAgainAriaLabel: '速度テストを再実行', cancelAriaLabel: '速度テストをキャンセル', statusAriaLabel: '速度テストの状態' },
   },
@@ -84,6 +104,12 @@ const LocationIcon = () => (
   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+  </svg>
+);
+
+const ServerIcon = () => (
+  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
   </svg>
 );
 
@@ -128,12 +154,22 @@ export default function Home() {
   } = useSpeedTest();
 
   const [location, setLocation] = useState<LocationData | null>(null);
+  const [serverInfo, setServerInfo] = useState<ServerInfo | null>(null);
 
   useEffect(() => {
-    fetch('/api/location')
-      .then(res => res.json())
-      .then(data => setLocation(data))
-      .catch(() => setLocation(null));
+    // Fetch user location and server info in parallel
+    Promise.all([
+      fetch('/api/location').then(res => res.json()),
+      fetch('/api/server-info').then(res => res.json()),
+    ])
+      .then(([locationData, serverData]) => {
+        setLocation(locationData);
+        setServerInfo(serverData);
+      })
+      .catch(() => {
+        setLocation(null);
+        setServerInfo(null);
+      });
   }, []);
 
   const handleButtonClick = () => {
@@ -221,17 +257,50 @@ export default function Home() {
             {t.header.subtitle}
           </p>
           
-          {/* Location */}
-          {location && (
-            <motion.div 
-              className="flex items-center justify-center gap-2 mt-4 text-zinc-400 text-sm"
+          {/* Location and Server Info */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-4">
+            {/* User Location */}
+            {location && (
+              <motion.div 
+                className="flex items-center gap-2 text-zinc-400 text-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <LocationIcon />
+                <span>
+                  {location.city}{location.region ? `, ${location.region}` : ''}
+                </span>
+              </motion.div>
+            )}
+            
+            {/* Server Location */}
+            {serverInfo && (
+              <motion.div 
+                className="flex items-center gap-2 text-zinc-400 text-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <ServerIcon />
+                <span>
+                  {t.server.label}: {serverInfo.server.region.flag} {serverInfo.server.region.city}
+                </span>
+              </motion.div>
+            )}
+          </div>
+
+          {/* Powered by badge */}
+          {serverInfo && serverInfo.server.provider !== 'Local Development' && (
+            <motion.div
+              className="flex items-center justify-center gap-2 mt-3 text-zinc-500 text-xs"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.5 }}
             >
-              <LocationIcon />
-              <span>
-                {location.city}{location.region ? `, ${location.region}` : ''} — {location.isp || location.country}
+              <span>{t.server.poweredBy}</span>
+              <span className="font-medium text-zinc-400">
+                {serverInfo.server.provider}
               </span>
             </motion.div>
           )}
@@ -349,6 +418,21 @@ export default function Home() {
                   delay={0.15}
                 />
               </motion.div>
+
+              {/* Server info in results */}
+              {serverInfo && (
+                <motion.div
+                  className="flex items-center justify-center gap-2 mt-6 text-zinc-500 text-xs"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <ServerIcon />
+                  <span>
+                    {t.server.label}: {serverInfo.server.region.flag} {serverInfo.server.region.city}, {serverInfo.server.region.country}
+                  </span>
+                </motion.div>
+              )}
             </>
           )}
 
@@ -372,4 +456,3 @@ export default function Home() {
     </main>
   );
 }
-
