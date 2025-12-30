@@ -34,7 +34,10 @@
   "server": {
     "label": "Server",
     "yourLocation": "Ihr Standort",
-    "poweredBy": "Betrieben von"
+    "poweredBy": "Betrieben von",
+    "auto": "Auto (Nächster)",
+    "selectServer": "Server auswählen",
+    "changeServer": "Server ändern"
   },
   "footer": {
     "text": "Kostenloser Internet-Geschwindigkeitstest — Prüfen Sie Download, Upload, Ping & Jitter"

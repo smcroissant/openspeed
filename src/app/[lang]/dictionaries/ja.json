@@ -34,7 +34,10 @@
   "server": {
     "label": "サーバー",
     "yourLocation": "あなたの場所",
-    "poweredBy": "提供"
+    "poweredBy": "提供",
+    "auto": "自動（最寄り）",
+    "selectServer": "サーバーを選択",
+    "changeServer": "サーバーを変更"
   },
   "footer": {
     "text": "無料インターネット速度テスト — ダウンロード、アップロード、ping、ジッターをチェック"

@@ -34,7 +34,10 @@
   "server": {
     "label": "Servidor",
     "yourLocation": "Tu ubicación",
-    "poweredBy": "Desarrollado con"
+    "poweredBy": "Desarrollado con",
+    "auto": "Auto (Más cercano)",
+    "selectServer": "Seleccionar servidor",
+    "changeServer": "Cambiar servidor"
   },
   "footer": {
     "text": "Test de velocidad de Internet gratis — Comprueba descarga, subida, ping y jitter"

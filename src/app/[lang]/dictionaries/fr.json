@@ -34,7 +34,10 @@
   "server": {
     "label": "Serveur",
     "yourLocation": "Votre position",
-    "poweredBy": "Propulsé par"
+    "poweredBy": "Propulsé par",
+    "auto": "Auto (Le plus proche)",
+    "selectServer": "Choisir un serveur",
+    "changeServer": "Changer de serveur"
   },
   "footer": {
     "text": "Test de vitesse Internet gratuit — Vérifiez téléchargement, envoi, ping et gigue"
