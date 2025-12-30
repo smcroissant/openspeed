@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpenSpeed
+
+A fast, beautiful, and free internet speed test application built with React Router v7.
+
+## Features
+
+- 📊 Download speed test
+- 📤 Upload speed test
+- 🏓 Ping/latency measurement
+- 📈 Jitter measurement
+- 🌍 Multi-language support (EN, FR, ES, IT, DE, JA)
+- 🖥️ Server selection with global locations
+- 🎨 Beautiful, responsive UI with animations
+
+## Tech Stack
+
+- **Framework**: React Router v7 (Framework Mode)
+- **Styling**: Tailwind CSS v4
+- **Animations**: Motion (Framer Motion)
+- **Language**: TypeScript
+- **Build Tool**: Vite
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or pnpm
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:5173`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+├── components/       # Reusable UI components
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions and i18n
+├── routes/          # React Router route modules
+│   ├── api/         # API resource routes
+│   ├── $lang/       # Localized page routes
+│   └── redirect.tsx # Root redirect handler
+├── entry.client.tsx # Client entry point
+├── entry.server.tsx # Server entry point
+├── root.tsx         # Root layout
+└── routes.ts        # Route configuration
+```
 
-## Deploy on Vercel
+## Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `SITE_URL` - The production URL (default: https://openspeed.app)
+- `VERCEL` - Set to '1' when running on Vercel
+- `VERCEL_ENV` - Environment type (production/preview/development)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
